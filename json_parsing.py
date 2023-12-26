@@ -10,3 +10,6 @@ if key in obj:
     print(obj[key])
 else:
     print(f"Ключа {key} в JSON немає")
+
+
+
