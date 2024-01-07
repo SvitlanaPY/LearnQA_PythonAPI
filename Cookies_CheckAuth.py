@@ -14,4 +14,3 @@ if cookie_value is not None:
 response2 = requests.get("https://playground.learnqa.ru/api/check_auth_cookie", cookies=cookies)
 
 print(response2.text)
-
