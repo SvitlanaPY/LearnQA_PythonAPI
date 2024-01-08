@@ -29,5 +29,23 @@
 # Как всегда, код нашей программы выкладываем ссылкой на комит.
 
 import requests
+import time
 
-response = requests.head("https://playground.learnqa.ru/ajax/api/longtime_job")
+response = requests.get("https://playground.learnqa.ru/ajax/api/longtime_job")
+parsed_response = response.json()   # {dict: 2} {'seconds': 18, 'token': 'ANyoDN1ojMyAyNw0SMw0CNyAjM'}
+print(parsed_response)
+
+response1 = requests.get("https://playground.learnqa.ru/ajax/api/longtime_job", params={"token": parsed_response['token']})
+# print(response1.text)
+print(f'Status is: {response1.json()['status']}')
+
+time.sleep(parsed_response['seconds'])
+
+response2 = requests.get("https://playground.learnqa.ru/ajax/api/longtime_job", params={"token": parsed_response['token']})
+parsed_response2 = response2.json()
+# print(response2.text)
+print(f'Result = {parsed_response2['result']}, Status = {parsed_response2['status']}')
+
+response3 = requests.get("https://playground.learnqa.ru/ajax/api/longtime_job", params={"token": "1ANyoDN1ojMyAyNw0SMw0CNyAjM"})
+# print(response3.text)
+print(f'Error = {response3.json()['error']}')
