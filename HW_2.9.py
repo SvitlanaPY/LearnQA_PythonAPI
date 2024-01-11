@@ -1,12 +1,8 @@
 # Ex9*: Подбор пароля
-#
-# Это необязательное задание повышенной сложности. Если вы хотите диплом с отличием - вам нужно его выполнить.
-# В остальных случаях - нет.
-#
 # Сегодня к нам пришел наш коллега и сказал, что забыл свой пароль от важного сервиса.
 # Он просит нас помочь ему написать программу, которая подберет его пароль.
 # Условие следующее. Есть метод: https://playground.learnqa.ru/ajax/api/get_secret_password_homework
-# Его необходимо вызывать POST-запросом с двумя параметрами: login и password
+# Его необходимо вызывать POST-запросом с двумя параметрами: login и password.
 # Если вызвать метод без поля login или указать несуществующий login, метод вернет 500
 # Если login указан и существует, метод вернет нам авторизационную cookie с названием auth_cookie и каким-то значением.
 #
@@ -19,8 +15,8 @@
 # По этой причине нам потребуется второй метод, который проверяет правильность нашей авторизованной cookie:
 # https://playground.learnqa.ru/ajax/api/check_auth_cookie
 #
-# Если вызвать его без cookie с именем auth_cookie или с cookie,
-# у которой выставлено "неправильное" значение, метод вернет фразу "You are NOT authorized".
+# Если вызвать его без cookie с именем auth_cookie или с cookie, # у которой выставлено "неправильное" значение,
+# метод вернет фразу "You are NOT authorized".
 # Если значение cookie “правильное”, метод вернет: “You are authorized”
 #
 # Коллега говорит, что точно помнит свой login - это значение super_admin
@@ -38,10 +34,27 @@
 # Если в ответ вернулась фраза "You are NOT authorized", значит пароль неправильный.
 # В этом случае берем следующий пароль и все заново.
 # Если же вернулась другая фраза - нужно, чтобы программа вывела верный пароль и эту фразу.
-#
-# Ответом к задаче должен быть верный пароль и ссылка на коммит со скриптом.
 
 import requests
 import time
 import json
 
+response = requests.get('https://en.wikipedia.org/wiki/List_of_the_most_common_passwords')
+# print(response.text)
+html_text_1 = response.text.split('<th>2019<sup id="cite_ref-splashdata2019_13-0" class="reference"><a href="#cite_note-splashdata2019-13">&#91;13&#93;</a></sup>\n</th></tr>\n<tr>\n<td align="center">1\n</td>')[1]
+html_text_2 = html_text_1.split('\n</td></tr></tbody></table>\n<h3><span class="mw-headline" id="Keeper">Keeper')[0]
+html_text_3 = html_text_2.split('<td align="left">')
+
+passwords = []
+for i in html_text_3:
+    value = i.split('\n</td>')[0]
+    passwords.append(value)
+passwords = passwords[1:]
+print(passwords)
+
+for pass_word in passwords:
+    payload = {"login": "super_admin", "password": pass_word}
+response = requests.post("https://playground.learnqa.ru/ajax/api/get_secret_password_homework", data = payload)
+#
+# cookie_value = response.cookies.get('auth_cookie')
+# print(cookie_value)
