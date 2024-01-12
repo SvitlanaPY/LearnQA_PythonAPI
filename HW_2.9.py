@@ -36,18 +36,16 @@
 # Если же вернулась другая фраза - нужно, чтобы программа вывела верный пароль и эту фразу.
 
 import requests
-import time
-import json
 
 response = requests.get('https://en.wikipedia.org/wiki/List_of_the_most_common_passwords')
 # print(response.text)
 html_text_1 = response.text.split('<th>2019<sup id="cite_ref-splashdata2019_13-0" class="reference"><a href="#cite_note-splashdata2019-13">&#91;13&#93;</a></sup>\n</th></tr>\n<tr>\n<td align="center">1\n</td>')[1]
 html_text_2 = html_text_1.split('\n</td></tr></tbody></table>\n<h3><span class="mw-headline" id="Keeper">Keeper')[0]
 html_text_3 = html_text_2.split('<td align="left">')
-
+print(html_text_3)
 passwords = []
-for i in html_text_3:
-    value = i.split('\n</td>')[0]
+for elem in html_text_3:
+    value = elem.split('\n</td>')[0]
     if value not in passwords:
         passwords.append(value)
 passwords = passwords[1:]
@@ -61,6 +59,6 @@ for pass_word in passwords:
     if cookie_value is not None:
         cookies.update({'auth_cookie': cookie_value})
     response2 = requests.get("https://playground.learnqa.ru/api/check_auth_cookie", cookies=cookies)
-    if response2.text is not 'You are NOT authorized':
+    if response2.text != 'You are NOT authorized':
         print(f'{response2.text}! Your password is: {pass_word}')
         break
