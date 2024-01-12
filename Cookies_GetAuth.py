@@ -14,7 +14,7 @@ print(response.headers)
 
 # ex.#2 incorrect pwd
 payload = {"login": "secret_login", "password": "secret_pass2"}
-response = requests.post("https://playground.learnqa.ru/api/get_auth_cookie", data= payload)
+response = requests.post("https://playground.learnqa.ru/api/get_auth_cookie", data=payload)
 
 print()
 print('ex.#2')
