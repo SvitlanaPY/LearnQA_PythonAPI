@@ -62,5 +62,5 @@ for pass_word in passwords:
         cookies.update({'auth_cookie': cookie_value})
     response2 = requests.get("https://playground.learnqa.ru/api/check_auth_cookie", cookies=cookies)
     if response2.text != 'You are NOT authorized':
-        print(f'{response2.text}! Your password: {pass_word}')
+        print(f'{response2.text}! Your password is: {pass_word}')
         break
