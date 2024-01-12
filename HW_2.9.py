@@ -48,7 +48,8 @@ html_text_3 = html_text_2.split('<td align="left">')
 passwords = []
 for i in html_text_3:
     value = i.split('\n</td>')[0]
-    passwords.append(value)
+    if value not in passwords:
+        passwords.append(value)
 passwords = passwords[1:]
 print(passwords)
 
@@ -61,5 +62,5 @@ for pass_word in passwords:
         cookies.update({'auth_cookie': cookie_value})
     response2 = requests.get("https://playground.learnqa.ru/api/check_auth_cookie", cookies=cookies)
     if response2.text != 'You are NOT authorized':
-        print(response2.text)
+        print(f'{response2.text}! Your password: {pass_word}')
         break
