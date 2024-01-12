@@ -1,5 +1,17 @@
 import requests
 
+# case#1: when login and password are correct:
+# payload = {"login": "secret_login", "password": "secret_pass"}
+# response11 = requests.post("https://playground.learnqa.ru/api/get_auth_cookie", data=payload)
+#
+# cookie_value = response1.cookies.get('auth_cookie')
+# # print('cookie_value= ', cookie_value)
+# cookies = {'auth_cookie': cookie_value}
+# response22 = requests.get("https://playground.learnqa.ru/api/check_auth_cookie", cookies=cookies)
+#
+# print(response22.text)
+
+# case#2: when login and password are NOT correct (then cookies are not sent by the server):
 payload = {"login": "secret_login", "password": "secret_pass"}
 # payload = {"login": "secret_login", "password": "secret_pass12345"}
 response1 = requests.post("https://playground.learnqa.ru/api/get_auth_cookie", data=payload)
