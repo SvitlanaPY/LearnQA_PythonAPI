@@ -19,4 +19,4 @@ first_response = response1.history[0]
 second_response = response1
 print(first_response.url)
 print(second_response.url)
-print(response.status_code)
+print(response1.status_code)
