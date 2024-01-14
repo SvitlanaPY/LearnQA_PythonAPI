@@ -1,4 +1,6 @@
 import requests
+
+
 class TestFirstAPI:
     def test_hello_call_pass(self):
         url = 'https://playground.learnqa.ru/api/hello'
