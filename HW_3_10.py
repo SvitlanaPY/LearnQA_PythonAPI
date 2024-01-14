@@ -15,5 +15,5 @@ class TestPhrase:
         phrase = input("Set a phrase: ")
         assert len(phrase) < 15, f"Length of the phrase is more than 15"
 
-if __name__ == '__main__':
-    pytest.main(['--capture=no'])
+# if __name__ == '__main__':
+#     pytest.main(['--capture=no'])
