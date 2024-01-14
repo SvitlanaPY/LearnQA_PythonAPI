@@ -15,4 +15,4 @@ import pytest
 class TestPhrase:
     def test_check_phrase_length(self):
         phrase = input("SET A PHRASE: ")
-        assert len(phrase) < 15, f"Length of the phrase is more than 15"
+        assert len(phrase) < 15, f"Length of the phrase is more than 15 symbols"
