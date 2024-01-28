@@ -11,7 +11,7 @@ import pytest
 import requests
 
 class TestCookie:
-    def test_check_cookie_pass(self):
+    def test_check_cookie_passed(self):
         response = requests.get('https://playground.learnqa.ru/api/homework_cookie')
         assert response.status_code == 200, 'Wrong status code'
 
@@ -29,9 +29,9 @@ class TestCookie:
 
         print(dict(response.cookies))
         cookies = dict(response.cookies)
-        assert 'Home_Work' in cookies, "There is no cookie_name 'Home_work' in the cookies"
+        assert 'HomeWork' in cookies, "There is no cookie_name 'HomeWork' in the cookies"
 
         actual_cookie_value = cookies['HomeWork']   # actual_cookie_value = response.cookies.get('HomeWork')
-        expected_cookie_value = 'hw_value'
+        expected_cookie_value = 'hw_value1111'
         assert actual_cookie_value == expected_cookie_value, 'Actual cookie_value in the cookies is NOT correct'
         
