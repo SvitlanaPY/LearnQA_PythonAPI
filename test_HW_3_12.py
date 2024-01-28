@@ -23,4 +23,3 @@ class TestHeaders:
         actual_ConnectionHeader_value = headers_['Connection']  # actual_cookie_value = response.cookies.get('HomeWork')
         expected_ConnectionHeader_value = 'keep-alive'
         assert actual_ConnectionHeader_value == expected_ConnectionHeader_value, 'Actual ConnectionHeader_value in the headers is NOT correct'
-
