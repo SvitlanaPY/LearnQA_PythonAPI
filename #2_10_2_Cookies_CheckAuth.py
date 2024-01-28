@@ -19,10 +19,10 @@ response1 = requests.post("https://playground.learnqa.ru/api/get_auth_cookie", d
 # print(dict(response1.cookies))
 cookie_value = response1.cookies.get('auth_cookie')
 # print('cookie_value= ', cookie_value)
-cookies = {}
+cookies_ = {}
 if cookie_value is not None:
-    cookies.update({'auth_cookie': cookie_value})
+    cookies_.update({'auth_cookie': cookie_value})
 
-response2 = requests.get("https://playground.learnqa.ru/api/check_auth_cookie", cookies=cookies)
+response2 = requests.get("https://playground.learnqa.ru/api/check_auth_cookie", cookies=cookies_)
 
 print(response2.text)   # You are authorized (when password is correct); You are NOT authorized (when password is incorrect)
