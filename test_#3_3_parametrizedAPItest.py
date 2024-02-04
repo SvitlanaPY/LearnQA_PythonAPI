@@ -9,7 +9,7 @@ class TestFirstAPI:
         ("")
     ]
     @pytest.mark.parametrize('name_', names)
-    def test_hello_call_pass(self, name_):
+    def test_hello_call(self, name_):
         url = 'https://playground.learnqa.ru/api/hello'
         data = {'name': name_}
 
