@@ -19,7 +19,7 @@ class TestFirstAPI:
         response_dict = response.json()
         assert 'answer' in response_dict, "There is no key 'answer' in the response"
 
-        if name_ == "":
+        if name_ == "":   # if len(name) == 0:
             expected_response_text = f"Hello, someone"
         else:
             expected_response_text = f"Hello, {name_}"
