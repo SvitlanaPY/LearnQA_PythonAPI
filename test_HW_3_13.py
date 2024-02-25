@@ -40,10 +40,10 @@ class TestUserAgent:
         ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.100.0","Web","Chrome","No"),
         ("Mozilla/5.0 (iPad; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1","Mobile","No","iPhone")
     ]
-    @pytest.mark.parametrize('user_agent, expected_platform, expected_browser, expected_device', ParametersList)
-    def test_user_agent(self, user_agent, expected_platform, expected_browser, expected_device):
+    @pytest.mark.parametrize('prm_user_agent, expected_platform, expected_browser, expected_device', ParametersList)
+    def test_user_agent(self, prm_user_agent, expected_platform, expected_browser, expected_device):
         url = 'https://playground.learnqa.ru/ajax/api/user_agent_check'
-        response = requests.get(url, headers={"User-Agent": user_agent})
+        response = requests.get(url, headers={"User-Agent": prm_user_agent})
         assert response.status_code == 200, 'Wrong status code'
 
         response_dict = response.json()
