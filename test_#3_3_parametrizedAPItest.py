@@ -13,7 +13,7 @@ class TestFirstAPI:
         url = 'https://playground.learnqa.ru/api/hello'
         data = {'name': name_}
 
-        response = requests.get(url, params=data)
+        response = requests.get(url, params=data)   # response = requests.get(url, params={'name': name_})
         assert response.status_code == 200, 'Wrong status code'
 
         response_dict = response.json()
