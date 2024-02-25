@@ -43,4 +43,5 @@ class TestUserAgent:
     @pytest.mark.parametrize('user_agent', headers_)
     def test_user_agent(self, headers_):
         url = 'https://playground.learnqa.ru/ajax/api/user_agent_check'
-        requests.get(url, headers={"User-Agent": headers_})
+        response = requests.get(url, headers={"User-Agent": headers_})
+        assert response.status_code == 200, 'Wrong status code'
