@@ -8,19 +8,16 @@
 #
 # Если мы вызываем его БЕЗ GET-параметра token, метод заводит новую задачу,
 # а в ответ выдает нам JSON со следующими полями:
-#
 # * seconds - количество секунд, через сколько задача будет выполнена
 # * token - тот самый токен, по которому можно получить результат выполнения нашей задачи
 #
 # Если же вызвать метод, УКАЗАВ GET-параметром token, то мы получим следующий JSON:
-#
 # * error - будет только в случае, если передать token, для которого не создавалась задача.
 # В этом случае в ответе будет следующая надпись - No job linked to this token
 # * status - если задача еще не готова, будет надпись Job is NOT ready, если же готова - будет надпись Job is ready
-# * result - будет только в случае, если задача готова, это поле будет содержать результат
+# * result - будет только в случае, если задача готова, это поле будет содержать результат.
 #
 # Наша задача - написать скрипт, который делал бы следующее:
-#
 # 1) создавал задачу
 # 2) делал один запрос с token ДО того, как задача готова, убеждался в правильности поля status
 # 3) ждал нужное количество секунд с помощью функции time.sleep() - для этого надо сделать import time
@@ -36,7 +33,7 @@ parsed_response = response.json()   # {dict: 2} {'seconds': 18, 'token': 'ANyoDN
 print(parsed_response)
 
 response1 = requests.get("https://playground.learnqa.ru/ajax/api/longtime_job", params={"token": parsed_response['token']})
-# print(response1.text)
+print(response1.text)
 print(f'Status is: {response1.json()['status']}')
 
 time.sleep(parsed_response['seconds'])
