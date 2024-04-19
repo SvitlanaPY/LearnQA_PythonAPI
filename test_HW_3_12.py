@@ -17,9 +17,11 @@ class TestHeaders:
         assert response.status_code == 200, 'Wrong status code'
 
         print(response.headers)
-        headers_ = dict(response.headers)
-        assert 'Connection' in headers_, "There is no header_name 'Connection' in the headers"
+        # headers_ = dict(response.headers)   # не потрібно перетворювати у словник, бо заголовки (headers) в бібліотеці requests передаються у вигляді словників.
+        # assert 'Connection' in headers_, "There is no header_name 'Connection' in the headers"
+        assert 'Connection' in response.headers, "There is no header_name 'Connection' in the headers"
 
-        actual_ConnectionHeader_value = headers_['Connection']  # actual_cookie_value = response.cookies.get('HomeWork')
+        # actual_ConnectionHeader_value = headers_['Connection']
+        actual_ConnectionHeader_value = response.headers['Connection']
         expected_ConnectionHeader_value = 'keep-alive'
         assert actual_ConnectionHeader_value == expected_ConnectionHeader_value, 'Actual ConnectionHeader_value in the headers is NOT correct'
