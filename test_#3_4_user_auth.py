@@ -23,7 +23,6 @@ class TestUserAuth:
             cookies={"auth_sid": auth_sid}
         )
 
-        assert "user_id" in response2.json(), "here is no user id in the response2"
+        assert "user_id" in response2.json(), "There is no user id in the response2"
         user_id_from_check_method = response2.json()["user_id"]
-
         assert user_id_from_auth_method == user_id_from_check_method, "User id from auth method is not equal to user id from check method"
