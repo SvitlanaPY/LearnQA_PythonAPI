@@ -15,13 +15,11 @@ class TestFirstAPI:
 
         response = requests.get(url, params=data)   # response = requests.get(url, params={'name': name_})
         assert response.status_code == 200, 'Wrong status code'
-
         response_dict = response.json()
         assert 'answer' in response_dict, "There is no key 'answer' in the response"
-
-        if name_ == "":   # if len(name) == 0:
+        actual_response_text = response_dict['answer']
+        if name_ == "":   # if len(name_) == 0:
             expected_response_text = f"Hello, someone"
         else:
             expected_response_text = f"Hello, {name_}"
-        actual_response_text = response_dict['answer']
         assert actual_response_text == expected_response_text, "Actual text in the response is NOT correct"

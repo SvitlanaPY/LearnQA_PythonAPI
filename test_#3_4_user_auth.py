@@ -1,7 +1,7 @@
 import requests
 
 class TestUserAuth:
-    def test_user_auth(selfs):
+    def test_user_auth(self):
         auth_data = {
             'email': 'vinkotov@example.com',
             'password': '1234'

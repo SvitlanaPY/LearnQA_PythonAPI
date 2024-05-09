@@ -20,7 +20,6 @@ class TestFirstAPI:
     def test_hello_call_fail(self):
         url = 'https://playground.learnqa.ru/api/hello'
         name = 'Svitlana'
-        data = {'name': name}
 
         response = requests.get(url)
         assert response.status_code == 200, 'Wrong status code'
