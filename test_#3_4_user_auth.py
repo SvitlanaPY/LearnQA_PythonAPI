@@ -8,7 +8,7 @@ class TestUserAuth:
         }
 
         response1 = requests.post("https://playground.learnqa.ru/api/user/login", data=auth_data)
-
+        assert response1.status_code == 200, 'Wrong status code'
         assert "auth_sid" in response1.cookies, "There is no auth cookie in the response1"
         assert "x-csrf-token" in response1.headers, "There is no CSRF token header in the response1"
         assert "user_id" in response1.json(), "There is no user id in the response1"
@@ -22,7 +22,7 @@ class TestUserAuth:
             headers={"x-csrf-token": token},
             cookies={"auth_sid": auth_sid}
         )
-
+        assert response2.status_code == 200, 'Wrong status code'
         assert "user_id" in response2.json(), "There is no user id in the response2"
         user_id_from_check_method = response2.json()["user_id"]
         assert user_id_from_auth_method == user_id_from_check_method, "User id from auth method is not equal to user id from check method"
