@@ -22,6 +22,8 @@ class TestUserAuth:
         self.auth_sid = response1.cookies.get("auth_sid")
         self.token = response1.headers.get("x-csrf-token")
         self.user_id_from_auth_method = response1.json().get("user_id")  # user_id_from_auth_method = response1.json()["user_id"]
+    #   метод словника .get()   - повертає значення по ключу, якщо ключ є; якщо ключа немає - поверне None, або передане значення;
+    # цей метод можна використати, щоб код не падав у помилку, коли намагаємось отримати значення по неіснуючому ключу.
 
     def test_user_auth(self):
         response2 = requests.get(
@@ -31,8 +33,8 @@ class TestUserAuth:
         )
         assert response2.status_code == 200, 'Wrong status code'
         assert "user_id" in response2.json(), "There is no user id in the response2"
-        user_id_from_check_method = response2.json()["user_id"]
-        assert self.user_id_from_auth_method == user_id_from_check_method, "User id from auth method is not equal to user id from check method"
+        user_id_from_check_method = response2.json()["user_id"]   # user_id_from_check_method = response2.json().get("user_id")
+        assert user_id_from_check_method == self.user_id_from_auth_method, "User id from auth method is not equal to user id from check method"
 
 
     @pytest.mark.parametrize('condition', exclude_params)
@@ -50,5 +52,5 @@ class TestUserAuth:
 
         assert response2.status_code == 200, 'Wrong status code'
         assert "user_id" in response2.json(), "There is no user id in the response2"
-        user_id_from_check_method = response2.json()["user_id"]
+        user_id_from_check_method = response2.json()["user_id"]   # user_id_from_check_method = response2.json().get("user_id")
         assert user_id_from_check_method == 0, f"User is authorized with {condition}"
