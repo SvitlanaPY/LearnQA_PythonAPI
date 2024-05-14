@@ -39,8 +39,8 @@ class TestUserAuth:
         assert "x-csrf-token" in response1.headers, "There is no CSRF token header in the response1"
         assert "user_id" in response1.json(), "There is no user id in the response1"
 
-        self.auth_sid = response1.cookies.get("auth_sid")
-        self.token = response1.headers.get("x-csrf-token")
+        self.auth_sid = response1.cookies.get("auth_sid")   # response1.cookies["auth_sid"]
+        self.token = response1.headers.get("x-csrf-token")   # response1.headers["x-csrf-token"]
         self.user_id_from_auth_method = response1.json().get("user_id")  # user_id_from_auth_method = response1.json()["user_id"]
     #   метод словника .get()   - повертає значення по ключу, якщо ключ є; якщо ключа немає - поверне None, або передане значення;
     # цей метод можна використати, щоб код не падав у помилку, коли намагаємось отримати значення по неіснуючому ключу.
