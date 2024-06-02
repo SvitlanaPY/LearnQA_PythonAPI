@@ -41,6 +41,8 @@ class TestUserAuth:
 
         auth_sid = response1.cookies.get("auth_sid")
         token = response1.headers.get("x-csrf-token")
+        # user_id_from_auth_method = response1.json().get("user_id") -
+        # "user_id" нам не потрібне, бо при подальших перевірках ми не будемо його використовувати, тому ми його не запамятовуємо у змінну.
 
         if condition == "no_cookie":
             response2 = requests.get(
