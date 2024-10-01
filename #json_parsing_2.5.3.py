@@ -12,6 +12,7 @@ except JSONDecodeError:
 # зазвичай парсінг json завжди обертають у конструкцію try...except
 
 
+# плюс перевірка ключа на його наявність:
 # try:
 #     parsed_response_text = response.json()
 #     key = "answer"

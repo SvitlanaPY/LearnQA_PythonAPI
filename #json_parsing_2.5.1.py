@@ -14,7 +14,7 @@ if key in obj:
     print(obj[key])
 else:
     print(f"Ключа {key} в JSON немає")
-# Ключа answer2 в JSON немає
+# Ключа "answer2" в JSON немає
 
 key = "answer"
 if key in obj:
