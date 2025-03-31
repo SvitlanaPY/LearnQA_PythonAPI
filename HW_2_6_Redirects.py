@@ -11,3 +11,6 @@ response = requests.get("https://playground.learnqa.ru/api/long_redirect", allow
 
 print("Qty. of redirects:", len(response.history))
 print("final redirect:", response.url)
+print("final redirect:", response.history[-1].url)
+pass
+
