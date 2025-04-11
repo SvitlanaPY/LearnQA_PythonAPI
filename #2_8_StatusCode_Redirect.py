@@ -36,5 +36,4 @@ second_response = response
 print(first_response.url)   # print(response.history[0].url)
 print(second_response.url)   # print(response.url)
 print(second_response.status_code)
-pass
 
