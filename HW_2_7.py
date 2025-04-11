@@ -77,20 +77,20 @@ import requests
 params = ['GET', 'POST', 'PUT', 'DELETE']
 for i in params:
     response = requests.get("https://playground.learnqa.ru/ajax/api/compare_query_type", params={"method": i})
-    print(f"GET: method={i}, {response.text}")
-    print(f"GET: method={i}: {response.status_code}: {response.reason}")
+    print(f"requests.GET: method={i}, {response.text}")
+    print(f"requests.GET: method={i}: {response.status_code}: {response.reason}")
 
 for i in params:
     response = requests.post("https://playground.learnqa.ru/ajax/api/compare_query_type", data={"method": i})
-    print(f"POST: method={i}, {response.text}")
-    print(f"POST: method={i}: {response.status_code}: {response.reason}")
+    print(f"requests.POST: method={i}, {response.text}")
+    print(f"requests.POST: method={i}: {response.status_code}: {response.reason}")
 
 for i in params:
     response = requests.put("https://playground.learnqa.ru/ajax/api/compare_query_type", data={"method": i})
-    print(f"PUT: method={i}, {response.text}")
-    print(f"PUT: method={i}: {response.status_code}: {response.reason}")
+    print(f"requests.PUT: method={i}, {response.text}")
+    print(f"requests.PUT: method={i}: {response.status_code}: {response.reason}")
 
 for i in params:
     response = requests.delete("https://playground.learnqa.ru/ajax/api/compare_query_type", data={"method": i})
-    print(f"DELETE: method={i}, {response.text}")
-    print(f"DELETE: method={i}: {response.status_code}: {response.reason}")
+    print(f"requests.DELETE: method={i}, {response.text}")
+    print(f"requests.DELETE: method={i}: {response.status_code}: {response.reason}")
