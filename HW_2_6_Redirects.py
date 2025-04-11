@@ -9,8 +9,8 @@ import requests
 
 response = requests.get("https://playground.learnqa.ru/api/long_redirect", allow_redirects=True)
 
-print("Qty. of redirects:", len(response.history))
+print("Qty. of redirects:", len(response.history))  # __len__ = {int} 3
 print("final redirect:", response.url)
-print("final redirect:", response.history[-1].url)
+# в response.history[-1].url - не є final url, final url завжди лежить в response.url
 pass
 
