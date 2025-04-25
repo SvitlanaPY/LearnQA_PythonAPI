@@ -18,6 +18,7 @@ response = requests.get("https://gist.githubusercontent.com/KotovVitaliy/83e4eea
 # print(len(response.text))
 json_text = response.text[1:-1]
 obj = json.loads(json_text)
+# obj = json.loads(response.text[1:-1])
 print(obj['messages'][1]['message'])
 
 

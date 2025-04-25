@@ -1,5 +1,3 @@
-from json.decoder import JSONDecodeError
-import requests
 # Не завжди response.text містить строку у форматі json,
 # e.g. response.text = {str} 'Hello, world'
 
@@ -9,6 +7,8 @@ import requests
 # parsed_response_text = response.json()
 # print(parsed_response_text)
 
+from json.decoder import JSONDecodeError
+import requests
 
 # зазвичай парсінг json завжди обертають у конструкцію try...except
 response = requests.get("https://playground.learnqa.ru/api/get_text")
