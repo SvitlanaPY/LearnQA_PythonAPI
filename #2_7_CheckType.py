@@ -28,4 +28,3 @@ for i in params_:
     response = requests.post("https://playground.learnqa.ru/api/check_type", data={"param1": i})
     # print(response.url)
     print(response.text)
-
