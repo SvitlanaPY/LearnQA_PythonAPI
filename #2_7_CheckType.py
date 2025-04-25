@@ -11,10 +11,10 @@ import requests
 
 params_ = ['1', '2', '3', '4']
 
-# response = requests.get("https://playground.learnqa.ru/api/check_type", params={"param1": "value1"})
+# response1 = requests.get("https://playground.learnqa.ru/api/check_type", params={"param1": "value1"})
 response = requests.post("https://playground.learnqa.ru/api/check_type", data={"param1": "value1"})
-# response = requests.put("https://playground.learnqa.ru/api/check_type", data={"param1": "value1"})
-# response = requests.delete("https://playground.learnqa.ru/api/check_type", data={"param1": "value1"})
+# response2 = requests.put("https://playground.learnqa.ru/api/check_type", data={"param1": "value1"})
+# response3 = requests.delete("https://playground.learnqa.ru/api/check_type", data={"param1": "value1"})
 
 print(response.text)
 print(response.url)
@@ -22,8 +22,10 @@ print(response.url)
 for i in params_:
     response = requests.get("https://playground.learnqa.ru/api/check_type", params={"param1": i})
     print(response.url)
+    # print(response.text)
 
 for i in params_:
     response = requests.post("https://playground.learnqa.ru/api/check_type", data={"param1": i})
+    # print(response.url)
     print(response.text)
 
