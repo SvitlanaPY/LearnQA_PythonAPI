@@ -14,8 +14,8 @@
 #
 # Если же вызвать метод, УКАЗАВ GET-параметром token, то мы получим следующий JSON:
 # * error - будет только в случае, если передать token, для которого не создавалась задача.
-#       В этом случае в ответе будет следующая надпись - No job linked to this token
-# * status - если задача еще не готова, будет надпись Job is NOT ready, если же готова - будет надпись Job is ready
+#           В этом случае в ответе будет следующая надпись - No job linked to this token
+# * status - если задача еще не готова, будет надпись - Job is NOT ready, если же готова - будет надпись Job is ready
 # * result - будет только в случае, если задача готова, это поле будет содержать результат.
 #
 # Наша задача - написать скрипт, который делал бы следующее:
@@ -47,4 +47,21 @@ print(f'Result = {parsed_response2['result']}, Status = {parsed_response2['statu
 response3 = requests.get("https://playground.learnqa.ru/ajax/api/longtime_job", params={"token": "1ANyoDN1ojMyAyNw0SMw0CNyAjM"})
 # print(response3.text)  # text = {str} '{"error":"No job linked to this token"}'
 print(f'Error = {response3.json()['error']}')
+
+
+# # ------ Solution #2 ------
+# import requests
+# import time
+#
+# response = requests.get("https://playground.learnqa.ru/ajax/api/longtime_job")
+# parsed_response = response.json()   # {dict: 2} {'seconds': 16, 'token': 'wNwozNyoDMyASMx0CNw0SNyAjM'}
+# print("parsed_response: ", parsed_response)
+# while True:
+#     response_ = requests.get("https://playground.learnqa.ru/ajax/api/longtime_job", params={"token": parsed_response['token']})
+#     parsed_response_ = response_.json()
+#     print(f'Seconds = {parsed_response['seconds']}')
+#     if parsed_response_['status'] == 'Job is ready':
+#         break
+#     time.sleep(1)
+# print(f'Result = {parsed_response_['result']}, Status = {parsed_response_['status']}')
 
