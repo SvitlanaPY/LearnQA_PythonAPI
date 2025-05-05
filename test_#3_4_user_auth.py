@@ -37,12 +37,9 @@ class TestUserAuth:
         assert "user_id" in response1.json(), "There is no user id in the response1"
         user_id_from_auth_method = response1.json().get("user_id")   # user_id_from_auth_method = response1.json()["user_id"]
 
-        response2 = requests.get(
-            "https://playground.learnqa.ru/api/user/auth",
-            headers={"x-csrf-token": token},
-            cookies={"auth_sid": auth_sid}
-        )
+        response2 = requests.get("https://playground.learnqa.ru/api/user/auth", headers={"x-csrf-token": token}, cookies={"auth_sid": auth_sid})
         assert response2.status_code == 200, 'Wrong status code'
         assert "user_id" in response2.json(), "There is no user id in the response2"
         user_id_from_check_method = response2.json()["user_id"]
         assert user_id_from_auth_method == user_id_from_check_method, "User id from auth method is not equal to user id from check method"
+
