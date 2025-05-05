@@ -33,6 +33,6 @@ class TestFirstAPI:
 
 #        AssertionError: Actual text in the response is NOT correct
 #        assert 'Hello, someone' == 'Hello, Svitlana'
-#          - Hello, Svitlana   (те, що ми очікуємо)
-#          + Hello, someone    (те, що на нам насправді прийшло)
+#          - Hello, Svitlana   (через знак мінус pytest пише те значення, яке ми очікуємо)
+#          + Hello, someone    (а через знак плюс pytest пише те значення, що нам насправді прийшло)
 
