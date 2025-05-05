@@ -7,7 +7,8 @@
 # phrase = input("Set a phrase: ")
 #
 # Внимание, чтобы pytest не игнорировал команду ввода с клавиатуры, запускать тест нужно с ключиком "-s":
-# python -m pytest -s xxx.py
+# python -m pytest -s test_HW_3_10.py
+
 
 import pytest
 
@@ -16,3 +17,4 @@ class TestPhrase:
     def test_check_phrase_length(self):
         phrase = input("SET A PHRASE: ")
         assert len(phrase) < 15, f"Length of the phrase is more than 15 symbols"
+
