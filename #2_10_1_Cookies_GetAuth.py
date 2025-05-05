@@ -21,9 +21,9 @@ payload = {"login": "secret_login", "password": "secret_pass"}
 response = requests.post("https://playground.learnqa.ru/api/get_auth_cookie", data=payload)
 
 print('ex.#1')
-print(response.text)
-print(response.status_code)
-print(response.cookies)
+print(response.text)    # ''
+print(response.status_code)    # 200
+print(response.cookies)    # <RequestsCookieJar[<Cookie auth_cookie=311100 for .playground.learnqa.ru/>]>
 print(dict(response.cookies))     # {'auth_cookie': '322410'}
 print(response.headers)
 # response.headers:
@@ -47,7 +47,7 @@ response = requests.post("https://playground.learnqa.ru/api/get_auth_cookie", da
 
 print()
 print('ex.#2')
-print(response.text)
-print(response.status_code)
-print(response.cookies)
-print(dict(response.cookies))
+print(response.text)    # {"error":"Wrong data"}
+print(response.status_code)    # 200
+print(response.cookies)    # <RequestsCookieJar[]>
+print(dict(response.cookies))    # {}
