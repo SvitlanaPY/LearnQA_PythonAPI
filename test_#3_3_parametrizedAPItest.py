@@ -29,6 +29,8 @@ class TestFirstAPI:
         assert actual_response_text == expected_response_text, "Actual text in the response is NOT correct"
 
 
+# параметризація тестів - механізм, що дозволяє запускати один і той самий тест з різними параметрами
+# параметри тесту задаються за межами функції але всередині класу. На саму функцію навішується декоратор @pytest.mark.parametrize;
 # в @pytest.mark.parametrize ми вказуємо ім"я змінної ('name_'), в яку pytest буде передавати дані,
 # а через кому вказуємо змінну, в якій зараз ці дані зберігаються('names').
 # після self в назві тесту ми вказуємо саме ту змінну ('name_'), в яку pytest передавав дані
