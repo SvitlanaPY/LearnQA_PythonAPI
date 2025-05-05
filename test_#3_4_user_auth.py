@@ -39,7 +39,7 @@ class TestUserAuth:
 
         assert "user_id" in response1.json(), "There is no user id in the response1"
         user_id_from_auth_method = response1.json().get("user_id")   # або user_id_from_auth_method = response1.json()["user_id"], але
-        # якщо такого ключа "user_id" неіснує, то тест впаде у помилку, тоді як при застусуванні get("user_id") до response1.json() - повертається значення None
+        # якщо такого ключа "user_id" неіснує, то тест впаде у помилку, тоді як при використанні .get("user_id") до response1.json() - повернеться значення None
 
 
         response2 = requests.get("https://playground.learnqa.ru/api/user/auth", headers={"x-csrf-token": token}, cookies={"auth_sid": auth_sid})
