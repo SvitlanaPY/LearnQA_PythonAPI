@@ -17,10 +17,9 @@ class TestCookie:
 
         # Cookie у змінній response зберігається у вигляді об"єкту. І щоб побачити значення Cookie, спершу треба його привести до вигляду словника.
         print(dict(response.cookies))
-        cookies_ = dict(response.cookies)
-        assert 'HomeWork' in cookies_, "There is no cookie_name 'Homework' in the cookies"
+        assert 'HomeWork' in response.cookies, "There is no cookie_name 'Homework' in the cookies"
 
-        actual_cookie_value = cookies_['HomeWork']   # actual_cookie_value = response.cookies.get('HomeWork')
+        actual_cookie_value = response.cookies.get('HomeWork')
         expected_cookie_value = 'hw_value'
         assert actual_cookie_value == expected_cookie_value, 'Actual cookie_value in the cookies is NOT correct'
 
@@ -29,10 +28,10 @@ class TestCookie:
         assert response.status_code == 200, 'Wrong status code'
 
         print(dict(response.cookies))
-        cookies_ = dict(response.cookies)
-        assert 'HomeWork' in cookies_, "There is no cookie_name 'HomeWork' in the cookies"
+        assert 'HomeWork' in response.cookies, "There is no cookie_name 'HomeWork' in the cookies"
 
-        actual_cookie_value = cookies_['HomeWork']   # actual_cookie_value = response.cookies.get('HomeWork')
+        actual_cookie_value = response.cookies.get('HomeWork')
         expected_cookie_value = 'hw_value1111'
         assert actual_cookie_value == expected_cookie_value, 'Actual cookie_value in the cookies is NOT correct'
+
         
