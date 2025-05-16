@@ -26,42 +26,43 @@
 #
 # Как всегда, код нашей программы выкладываем ссылкой на комит.
 
+# # ------ Solution #1 ------
+# import requests
+# import time
+
+# response = requests.get("https://playground.learnqa.ru/ajax/api/longtime_job")
+# parsed_response = response.json()   # {dict: 2} {'seconds': 16, 'token': 'wNwozNyoDMyASMx0CNw0SNyAjM'}
+# print("parsed_response: ", parsed_response)
+#
+# response1 = requests.get("https://playground.learnqa.ru/ajax/api/longtime_job", params={"token": parsed_response['token']})
+# # print(response1.text)  # text = {str} '{"status":"Job is NOT ready"}'
+# print(f'Status = {response1.json()['status']}')
+#
+# time.sleep(parsed_response['seconds'])
+#
+# response2 = requests.get("https://playground.learnqa.ru/ajax/api/longtime_job", params={"token": parsed_response['token']})
+# parsed_response2 = response2.json()
+# # print(response2.text)  # text = {str} '{"result":"42","status":"Job is ready"}'
+# print(f'Result = {parsed_response2['result']}, Status = {parsed_response2['status']}')
+#
+# response3 = requests.get("https://playground.learnqa.ru/ajax/api/longtime_job", params={"token": "1ANyoDN1ojMyAyNw0SMw0CNyAjM"})
+# # print(response3.text)  # text = {str} '{"error":"No job linked to this token"}'
+# print(f'Error = {response3.json()['error']}')
+
+
+# ------ Solution #2 ------
 import requests
 import time
 
 response = requests.get("https://playground.learnqa.ru/ajax/api/longtime_job")
 parsed_response = response.json()   # {dict: 2} {'seconds': 16, 'token': 'wNwozNyoDMyASMx0CNw0SNyAjM'}
 print("parsed_response: ", parsed_response)
-
-response1 = requests.get("https://playground.learnqa.ru/ajax/api/longtime_job", params={"token": parsed_response['token']})
-# print(response1.text)  # text = {str} '{"status":"Job is NOT ready"}'
-print(f'Status = {response1.json()['status']}')
-
-time.sleep(parsed_response['seconds'])
-
-response2 = requests.get("https://playground.learnqa.ru/ajax/api/longtime_job", params={"token": parsed_response['token']})
-parsed_response2 = response2.json()
-# print(response2.text)  # text = {str} '{"result":"42","status":"Job is ready"}'
-print(f'Result = {parsed_response2['result']}, Status = {parsed_response2['status']}')
-
-response3 = requests.get("https://playground.learnqa.ru/ajax/api/longtime_job", params={"token": "1ANyoDN1ojMyAyNw0SMw0CNyAjM"})
-# print(response3.text)  # text = {str} '{"error":"No job linked to this token"}'
-print(f'Error = {response3.json()['error']}')
-
-
-# # ------ Solution #2 ------
-# import requests
-# import time
-#
-# response = requests.get("https://playground.learnqa.ru/ajax/api/longtime_job")
-# parsed_response = response.json()   # {dict: 2} {'seconds': 16, 'token': 'wNwozNyoDMyASMx0CNw0SNyAjM'}
-# print("parsed_response: ", parsed_response)
-# while True:
-#     response_ = requests.get("https://playground.learnqa.ru/ajax/api/longtime_job", params={"token": parsed_response['token']})
-#     parsed_response_ = response_.json()
-#     print(f'Seconds = {parsed_response['seconds']}')
-#     if parsed_response_['status'] == 'Job is ready':
-#         break
-#     time.sleep(1)
-# print(f'Result = {parsed_response_['result']}, Status = {parsed_response_['status']}')
+while True:
+    response_ = requests.get("https://playground.learnqa.ru/ajax/api/longtime_job", params={"token": parsed_response['token']})
+    parsed_response_ = response_.json()
+    print(f'Status = {parsed_response_['status']}')
+    if parsed_response_['status'] == 'Job is ready':
+        break
+    time.sleep(1)
+print(f'Result = {parsed_response_['result']}, Status = {parsed_response_['status']}')
 
