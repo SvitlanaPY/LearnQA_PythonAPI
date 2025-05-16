@@ -16,7 +16,7 @@ class TestHeaders:
         print(response.text)
         assert response.status_code == 200, 'Wrong status code'
 
-        # У бібліотеці requests заголовки (headers) передаються за допомогою/у вигляді словників, тому щоб побачити значення headers нам не потрібно перетворювати його у словник:
+        # У бібліотеці requests заголовки (headers) передаються у вигляді словників, тому, щоб побачити значення headers нам не потрібно перетворювати його у словник:
         # headers_ = dict(response.headers)
         # print(headers_)
         print(response.headers)
