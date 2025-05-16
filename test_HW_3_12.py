@@ -16,12 +16,9 @@ class TestHeaders:
         print(response.text)
         assert response.status_code == 200, 'Wrong status code'
 
-        # У бібліотеці requests заголовки (headers) передаються за допомогою/у вигляді словників, тому не потрібно перетворювати у словник:
-        # print(dict(response.headers))
+        # У бібліотеці requests заголовки (headers) передаються за допомогою/у вигляді словників, тому щоб побачити значення headers нам не потрібно перетворювати його у словник:
         # headers_ = dict(response.headers)
-        # assert 'Connection' in headers_, "There is no header_name 'Connection' in the headers"
-        # actual_ConnectionHeader_value = headers_['Connection']
-
+        # print(headers_)
         print(response.headers)
         assert 'Connection' in response.headers, "There is no header_name 'Connection' in the headers"
 
