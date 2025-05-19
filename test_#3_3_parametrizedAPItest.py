@@ -3,11 +3,7 @@ import requests
 
 
 class TestFirstAPI:
-    names = [
-        ("Svitlana"),
-        ("JEP"),
-        ("")
-    ]
+    names = [("Svitlana"),("JEP"),("")]
     @pytest.mark.parametrize('name_', names)
     def test_hello_call(self, name_):
         url = 'https://playground.learnqa.ru/api/hello'

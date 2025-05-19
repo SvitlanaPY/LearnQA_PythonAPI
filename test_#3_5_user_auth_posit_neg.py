@@ -50,10 +50,7 @@ class TestUserAuth:
         assert user_id_from_auth_method == user_id_from_check_method, "User id from auth method is not equal to user id from check method"
 
 
-    exclude_params = [
-        ("no_cookie"),
-        ("no_token")
-    ]
+    exclude_params = [("no_cookie"),("no_token")]
     @pytest.mark.parametrize('condition', exclude_params)
     def test_negative_user_auth(self, condition):
         auth_data = {

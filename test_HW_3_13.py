@@ -13,7 +13,7 @@
 #
 # Наша задача написать параметризированный тест.
 # Этот тест должен брать из дата-провайдера User Agent и ожидаемые значения,
-# GET-делать запрос с этим User Agent и убеждаться, что результат работы нашего метода правильный -
+# делать GET-запрос с этим User Agent и убеждаться, что результат работы нашего метода правильный -
 # т.е. в ответе ожидаемое значение всех трех полей.
 #
 # Список User Agent и ожидаемых значений можно найти по этой ссылке:
@@ -42,6 +42,7 @@ class TestUserAgent:
     @pytest.mark.parametrize('prm_user_agent, expected_platform, expected_browser, expected_device', ParametersList)
     def test_user_agent(self, prm_user_agent, expected_platform, expected_browser, expected_device):
         url = 'https://playground.learnqa.ru/ajax/api/user_agent_check'
+
         response = requests.get(url, headers={"User-Agent": prm_user_agent})
         assert response.status_code == 200, 'Wrong status code'
 
@@ -50,9 +51,10 @@ class TestUserAgent:
         assert 'browser' in response_dict, "There is no key 'browser' in the response"
         assert 'device' in response_dict, "There is no key 'device' in the response"
 
-        actual_platform = response_dict['platform']
+        actual_platform = response_dict.get('platform')
         assert actual_platform == expected_platform, "Actual platform in the response is NOT correct"
-        actual_browser = response_dict['browser']
+        actual_browser = response_dict.get('browser')
         assert actual_browser == expected_browser, "Actual browser in the response is NOT correct"
-        actual_device = response_dict['device']
+        actual_device = response_dict.get('device')
         assert actual_device == expected_device, "Actual device in the response is NOT correct"
+
