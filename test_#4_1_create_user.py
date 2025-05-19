@@ -58,8 +58,3 @@ class TestUserRegister:
 
 # >python -m pytest -s test_#4_1_create_user.py
 
-
-# .
-
-
-
