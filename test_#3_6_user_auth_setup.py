@@ -17,9 +17,9 @@
 # Інакше сервер поверне id-користувача=0, це повинно означати, що ми передали невірний cookie чи header, або не передали їх взагалі.
 #
 # setup - це метод/ф-ія, який/яка буде запускатись перед виконанням кожного тесту.
-# код всередині цієї ф-ії буде автоматично виконуватись перед запуском кожного тесту в тому класі, в якому ця ф-ія описана.
+# код всередині цієї ф-ії буде автоматично виконуватись перед запуском КОЖНОГО тесту в тому класі, в якому ця ф-ія написана.
 # У цю ф-ію прийнято класти логіку, з якої повинні починатись всі тести в класі, наприклад логіку з підготовки тестових даних.
-# до всіх змінних, які потім будуть використовуватись в ін. тестових ф-іях, треба додавати self.
+# до всіх змінних, які потім будуть використовуватись в ін. тестах/ф-іях, треба додавати self.
 # self - це спеціальний вказівник, що дозволяє робити змінну полем/реквізитом класу і передавати її значення з однієї ф-ії в інші.
 #
 
@@ -41,14 +41,17 @@ class TestUserAuth:
 
         response1 = requests.post("https://playground.learnqa.ru/api/user/login", data=auth_data)
         assert response1.status_code == 200, 'Wrong status code'
+
         assert "auth_sid" in response1.cookies, "There is no auth cookie in the response1"
-        self.auth_sid = response1.cookies.get("auth_sid")   # response1.cookies["auth_sid"]
+        self.auth_sid = response1.cookies.get("auth_sid")   # або =response1.cookies["auth_sid"]
+
         assert "x-csrf-token" in response1.headers, "There is no CSRF token header in the response1"
-        self.token = response1.headers.get("x-csrf-token")   # response1.headers["x-csrf-token"]
+        self.token = response1.headers.get("x-csrf-token")   # або =response1.headers["x-csrf-token"]
+
         assert "user_id" in response1.json(), "There is no user id in the response1"
-        self.user_id_from_auth_method = response1.json().get("user_id")  # user_id_from_auth_method = response1.json()["user_id"]
+        self.user_id_from_auth_method = response1.json().get("user_id")  # або =response1.json()["user_id"]
     #   метод словника .get()   - повертає значення по ключу, якщо ключ є; якщо ключа немає - поверне None, або передане значення;
-    # цей метод можна використати, щоб код не падав у помилку, коли намагаємось отримати значення по неіснуючому ключу.
+    #   цей метод можна використати, щоб код не падав у помилку, коли намагаємось отримати значення по неіснуючому ключу.
 
 
     def test_user_auth(self):
@@ -58,8 +61,10 @@ class TestUserAuth:
             cookies={"auth_sid": self.auth_sid}
         )
         assert response2.status_code == 200, 'Wrong status code'
+
         assert "user_id" in response2.json(), "There is no user id in the response2"
-        user_id_from_check_method = response2.json()["user_id"]   # user_id_from_check_method = response2.json().get("user_id")
+        user_id_from_check_method = response2.json().get("user_id")    # або =response2.json()["user_id"]
+
         assert user_id_from_check_method == self.user_id_from_auth_method, "User id from auth method is not equal to user id from check method"
 
 
@@ -77,6 +82,9 @@ class TestUserAuth:
             )
 
         assert response2.status_code == 200, 'Wrong status code'
+
         assert "user_id" in response2.json(), "There is no user id in the response2"
-        user_id_from_check_method = response2.json()["user_id"]   # user_id_from_check_method = response2.json().get("user_id")
+        user_id_from_check_method = response2.json().get("user_id")    # =response2.json()["user_id"]
+
         assert user_id_from_check_method == 0, f"User is authorized with {condition}"
+
