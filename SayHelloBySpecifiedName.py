@@ -3,8 +3,11 @@
 
 import requests
 
-payload = {"name": "User"}
-# response = requests.get("https://playground.learnqa.ru/api/hello", params=payload)
-response = requests.get("https://playground.learnqa.ru/api/hello", params={"name": "User"})
-print(response.text)
-print("URL with params:", response.url)
+payload = {"name": "Anna"}
+response1 = requests.get("https://playground.learnqa.ru/api/hello", params=payload)
+print(response1.text)
+print("URL with params:", response1.url)
+
+response2 = requests.get("https://playground.learnqa.ru/api/hello", params={"name": "User"})
+print(response2.text)
+print("URL with params:", response2.url)
