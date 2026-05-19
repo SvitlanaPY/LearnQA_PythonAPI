@@ -1,5 +1,5 @@
 # API call says hello by name you specify - using parameters;
-# params - іменований параметер, в який потрібно передавати параметри запиту
+# params - іменований параметр, в який потрібно передавати параметри запиту
 
 import requests
 

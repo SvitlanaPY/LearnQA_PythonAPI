@@ -1,4 +1,4 @@
-# API call says hello by default name;
+# API call says hello by default name (someone);
 
 import requests
 
