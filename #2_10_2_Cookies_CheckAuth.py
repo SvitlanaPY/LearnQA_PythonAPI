@@ -4,6 +4,7 @@ import requests
 payload_correct = {"login": "secret_login", "password": "secret_pass"}
 response11 = requests.post("https://playground.learnqa.ru/api/get_auth_cookie", data=payload_correct)
 print(dict(response11.cookies))
+# cookie_value_correct = dict(response11.cookies)['auth_cookie'])   впаде у помилку, якщо даного 'auth_cookie' немає
 cookie_value_correct = response11.cookies.get('auth_cookie')    # за назвою cookie (а саме 'auth_cookie') отримуємо значення cookie і кладемо це значення у змінну cookie_value_correct
 print('cookie_value_correct= ', cookie_value_correct)
 cookie_correct = {'auth_cookie': cookie_value_correct}
