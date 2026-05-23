@@ -34,10 +34,13 @@
 # Если же вернулась другая фраза - нужно, чтобы программа вывела верный пароль и эту фразу.
 
 import requests
-
-response = requests.get('https://en.wikipedia.org/wiki/List_of_the_most_common_passwords')
+headers_ = {"user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"}
+response = requests.get('https://en.wikipedia.org/wiki/List_of_the_most_common_passwords', headers=headers_)
 # print(response.text)
-html_text_1 = response.text.split('<th>2019<sup id="cite_ref-splashdata2019_12-0" class="reference"><a href="#cite_note-splashdata2019-12"><span class="cite-bracket">&#91;</span>12<span class="cite-bracket">&#93;</span></a></sup>\n</th></tr>\n<tr>\n<td align="center">1\n</td>')[1]
+# Метод split() розрізає весь HTML-код на дві частини і в змінну html_text_1 записується лише друга частина:
+# Частина [0] — усе, що йшло до цього великого шматка тегів (шапка сайту, меню, реклама тощо).
+# Частина [1] — усе, що йде після нього (сама таблиця з топ-паролями та залишок сторінки).
+html_text_1 = response.text.split('<th>2019<sup id="cite&#95;ref-splashdata2019&#95;12-0" class="reference"><a href="#cite_note-splashdata2019-12"><span class="cite-bracket">&#91;</span>12<span class="cite-bracket">&#93;</span></a></sup>\n</th></tr>\n<tr>\n<td align="center">1\n</td>')[1]
 html_text_2 = html_text_1.split('\n</td></tr></tbody></table>\n<div class="mw-heading mw-heading3"><h3 id="Keeper">Keeper')[0]
 html_text_3 = html_text_2.split('<td align="left">')
 print(html_text_3)
