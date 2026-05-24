@@ -5,7 +5,7 @@
 # Необходимо с помощью функции print() понять что за cookie и с каким значением,
 # и зафиксировать это поведение с помощью assert
 #
-# Чтобы pytest не игнорировал print() необходимо использовать ключик "-s": python -m pytest -s my_test.py
+# pytest ігнорує всі print-и, і щоб pytest не ігнорував print() необхідно використати ключ "-s": python -m pytest -s my_test.py
 
 import pytest
 import requests

@@ -13,10 +13,10 @@ class TestHeaders:
 
     def test_check_headers_pass(self):
         response = requests.get("https://playground.learnqa.ru/api/homework_header")
-        print(response.text)
         assert response.status_code == 200, 'Wrong status code'
 
-        # У бібліотеці requests заголовки (headers) передаються у вигляді словників, тому, щоб побачити значення headers нам не потрібно перетворювати його у словник:
+        # У бібліотеці requests заголовки (headers) передаються у вигляді словників,
+        # тому, щоб побачити значення headers нам не потрібно перетворювати його у словник, а видрукувати одразу:
         # headers_ = dict(response.headers)
         # print(headers_)
         print(response.headers)
