@@ -10,7 +10,7 @@
 # До усіх подальших запитів ми повинні прикладати цю авторизаційну cookie (auth_sid), щоб сервер розумів, що наші запити йдуть від користувача і є авторизованими.
 # 3. так званий csrf-токен - він буде міститись в header-і/заголовку x-csrf-token і теж матиме якесь унікальне значення.
 # він відіграє ключову роль в безпеці користувача, і не дозволяє підробляти запити від імені цього користувача зловмисниками.
-# Лише у випадку передачі і вірного значення авторизаційного cookie (auth_sid) і вірного значення header-a/заколовка (x-csrf-token),
+# Лише у випадку передачі і вірного значення авторизаційного cookie (auth_sid) і вірного значення header-a/заголовка (x-csrf-token),
 # подальші запити будуть вважатись авторизованими.
 # Це ми і будемо перевіряти у другому запиті на метод /api/user/auth: передавати отримані із першого запиту cookie та header.
 # Цей метод влаштований наступним чином: якщо ми передамо вірні значення, отримані із першого запиту,
@@ -22,6 +22,7 @@
 import requests
 
 class TestUserAuth:
+
     def test_user_auth(self):
         auth_data = {
             'email': 'vinkotov@example.com',
@@ -39,7 +40,7 @@ class TestUserAuth:
 
         assert "user_id" in response1.json(), "There is no user id in the response1"
         user_id_from_auth_method = response1.json().get("user_id")   # або user_id_from_auth_method = response1.json()["user_id"], але
-        # якщо такого ключа "user_id" неіснує, то тест впаде у помилку, тоді як при використанні .get("user_id") до response1.json() - повернеться значення None
+        # якщо такого ключа "user_id" не існує, то тест впаде у помилку, тоді як при використанні .get("user_id") до response1.json() - повернеться значення None
 
 
         response2 = requests.get("https://playground.learnqa.ru/api/user/auth", headers={"x-csrf-token": token}, cookies={"auth_sid": auth_sid})
